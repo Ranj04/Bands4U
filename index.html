@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Bands4U — Expense & Savings for Students</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Reusable SVG icon defs -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 18l-6-6 6-6"/>
+      </symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+      </symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14M5 12h14"/>
+      </symbol>
+      <symbol id="i-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14"/>
+      </symbol>
+      <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+      </symbol>
+      <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2h-4V12h-6v10H5a2 2 0 0 1-2-2z"/>
+      </symbol>
+      <symbol id="i-insights" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/>
+      </symbol>
+      <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+      </symbol>
+      <symbol id="i-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 18l6-6-6-6"/>
+      </symbol>
+      <symbol id="i-logo" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16 32c0-8 8-16 16-16s16 8 16 16-8 16-16 16"/>
+        <path d="M16 32c0 8 8 16 16 16"/>
+        <circle cx="32" cy="32" r="4" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-delete" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M18 9l-6 6M12 9l6 6"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="phone" id="phone">
+
+    <!-- ===================================================================
+         1. SPLASH / WELCOME
+         =================================================================== -->
+    <div class="screen active" id="screen-splash">
+      <div class="splash-logo-wrap">
+        <svg><use href="#i-logo"/></svg>
+      </div>
+      <div class="splash-brand">BANDS4U</div>
+      <div class="splash-tagline">Track spending. Reach goals.</div>
+      <div class="splash-actions">
+        <button class="btn btn-primary" onclick="go('login')">Log In</button>
+        <button class="btn btn-outline" onclick="go('signup')">Sign Up</button>
+      </div>
+    </div>
+
+    <!-- ===================================================================
+         2. SIGN UP
+         =================================================================== -->
+    <div class="screen" id="screen-signup">
+      <div class="status-bar"><span>9:41</span><span class="icons">●●● 100%</span></div>
+      <div class="header">
+        <div class="header-left">
+          <button class="icon-btn" onclick="go('splash')"><svg><use href="#i-back"/></svg></button>
+        </div>
+      </div>
+      <h1 class="page-title">Create account</h1>
+      <p class="page-subtitle">Start tracking smarter in under a minute.</p>
+
+      <div class="input-group">
+        <label class="input-label">Full name</label>
+        <input class="input" type="text" placeholder="Alex Chen" value="Alex Chen" />
+      </div>
+      <div class="input-group">
+        <label class="input-label">Email</label>
+        <input class="input" type="email" placeholder="alex@college.edu" value="alex.chen@college.edu" />
+      </div>
+      <div class="input-group">
+        <label class="input-label">Password</label>
+        <input class="input" type="password" placeholder="At least 8 characters" value="••••••••" />
+      </div>
+
+      <button class="btn btn-primary btn-block" onclick="go('profile-setup')">Create Account</button>
+      <p style="text-align:center; font-size:13px; color:var(--text-secondary); margin-top:20px;">
+        Already a member?
+        <span style="color:var(--primary); font-weight:600; cursor:pointer;" onclick="go('login')">Log in</span>
+      </p>
+    </div>
+
+    <!-- ===================================================================
+         3. LOG IN
+         =================================================================== -->
+    <div class="screen" id="screen-login">
+      <div class="status-bar"><span>9:41</span><span class="icons">●●● 100%</span></div>
+      <div class="header">
+        <div class="header-left">
+          <button class="icon-btn" onclick="go('splash')"><svg><use href="#i-back"/></svg></button>
+        </div>
+      </div>
+      <h1 class="page-title">Welcome back</h1>
+      <p class="page-subtitle">Log in to keep your goals on track.</p>
+
+      <div class="input-group">
+        <label class="input-label">Email</label>
+        <input class="input" type="email" value="alex.chen@college.edu" />
+      </div>
+      <div class="input-group">
+        <label class="input-label">Password</label>
+        <input class="input" type="password" value="••••••••" />
+      </div>
+
+      <div style="text-align:right; padding: 0 20px 16px;">
+        <span style="color:var(--primary); font-size:13px; font-weight:500; cursor:pointer;"
+              onclick="alert('A reset link would be sent to your email.')">Forgot password?</span>
+      </div>
+
+      <button class="btn btn-primary btn-block" onclick="go('dashboard')">Log In</button>
+      <p style="text-align:center; font-size:13px; color:var(--text-secondary); margin-top:20px;">
+        New here?
+        <span style="color:var(--primary); font-weight:600; cursor:pointer;" onclick="go('signup')">Sign up</span>
+      </p>
+    </div>
+
+    <!-- ===================================================================
+         4. PROFILE SETUP
+         =================================================================== -->
+    <div class="screen" id="screen-profile-setup">
+      <div class="status-bar"><span>9:41</span><span class="icons">●●● 100%</span></div>
+      <div class="header">
+        <div class="header-left">
+          <button class="icon-btn" onclick="go('signup')"><svg><use href="#i-back"/></svg></button>
+        </div>
+      </div>
+      <h1 class="page-title">Set up profile</h1>
+      <p class="page-subtitle">Just a few details to personalize Bands4U.</p>
+
+      <div class="input-group">
+        <label class="input-label">Display name</label>
+        <input class="input" type="text" value="Alex Chen" />
+      </div>
+      <div class="input-group">
+        <label class="input-label">Currency</label>
+        <select class="select">
+          <option>USD — US Dollar</option>
+          <option>EUR — Euro</option>
+          <option>GBP — British Pound</option>
+          <option>CAD — Canadian Dollar</option>
+          <option>JPY — Japanese Yen</option>
+        </select>
+      </div>
+
+      <div class="card" style="margin-top:4px;">
+        <div class="toggle-row">
+          <div>
+            <div class="label">Weekly spending summary</div>
+            <div class="sub">A quick recap every Sunday.</div>
+          </div>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="toggle-row">
+          <div>
+            <div class="label">Goal reminders</div>
+            <div class="sub">Nudge me when I fall behind.</div>
+          </div>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="toggle-row">
+          <div>
+            <div class="label">Bill renewals</div>
+            <div class="sub">Heads up before subscriptions hit.</div>
+          </div>
+          <div class="toggle" onclick="this.classList.toggle('on')"></div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-block" onclick="go('dashboard')">Continue</button>
+    </div>
+
+    <!-- ===================================================================
+         5. DASHBOARD
+         =================================================================== -->
+    <div class="screen has-tabbar" id="screen-dashboard">
+      <div class="status-bar"><span>9:41</span><span class="icons">●●● 100%</span></div>
+
+      <div class="greeting">
+        <div>
+          <div class="hello">Good morning,</div>
+          <div class="name">Hi, Alex 👋</div>
+        </div>
+        <button class="icon-btn bell" onclick="go('alerts')">
+          <svg><use href="#i-bell"/></svg>
+          <span class="dot"></span>
+        </button>
+      </div>
+
+      <div class="balance-card">
+        <div class="label">Total Balance</div>
+        <div class="amount">$2,847.50</div>
+        <div class="trend">▲ +$340 this month</div>
+      </div>
+
+      <div class="section-title">Spending</div>
+      <div class="card donut-card">
+        <div class="donut-wrap">
+          <div class="donut-center">
+            <!-- Donut chart: circumference ≈ 502.65 for r=80 -->
+            <svg class="donut-svg" viewBox="0 0 200 200">
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#F1F3F5" stroke-width="28"/>
+              <!-- Food 35% -->
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#2ECC71" stroke-width="28"
+                stroke-dasharray="175.93 502.65" stroke-dashoffset="0"
+                transform="rotate(-90 100 100)" stroke-linecap="butt"/>
+              <!-- Transport 20% -->
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#FF6B6B" stroke-width="28"
+                stroke-dasharray="100.53 502.65" stroke-dashoffset="-175.93"
+                transform="rotate(-90 100 100)"/>
+              <!-- Bills 25% -->
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#3498DB" stroke-width="28"
+                stroke-dasharray="125.66 502.65" stroke-dashoffset="-276.46"
+                transform="rotate(-90 100 100)"/>
+              <!-- Shopping 15% -->
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#F39C12" stroke-width="28"
+                stroke-dasharray="75.40 502.65" stroke-dashoffset="-402.12"
+                transform="rotate(-90 100 100)"/>
+              <!-- Entertainment 5% -->
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#9B59B6" stroke-width="28"
+                stroke-dasharray="25.13 502.65" stroke-dashoffset="-477.52"
+                transform="rotate(-90 100 100)"/>
+            </svg>
+            <div class="total-label">
+              <div class="t1">Spent</div>
+              <div class="t2">$1,847</div>
+            </div>
+          </div>
+          <div class="legend">
+            <div class="legend-item"><span class="legend-dot" style="background:#2ECC71"></span>Food <span class="pct">35%</span></div>
+            <div class="legend-item"><span class="legend-dot" style="background:#FF6B6B"></span>Transport <span class="pct">20%</span></div>
+            <div class="legend-item"><span class="legend-dot" style="background:#3498DB"></span>Bills <span class="pct">25%</span></div>
+            <div class="legend-item"><span class="legend-dot" style="background:#F39C12"></span>Shopping <span class="pct">15%</span></div>
+            <div class="legend-item"><span class="legend-dot" style="background:#9B59B6"></span>Entertain. <span class="pct">5%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-actions">
+        <button class="quick-action expense" onclick="go('add-expense')">
+          <span class="circle"><svg><use href="#i-minus"/></svg></span>
+          <span class="lbl">Expense</span>
+        </button>
+        <button class="quick-action income" onclick="go('add-income')">
+          <span class="circle"><svg><use href="#i-plus"/></svg></span>
+          <span class="lbl">Income</span>
+        </button>
+        <button class="quick-action goal" onclick="go('create-goal')">
+          <span class="circle"><svg><use href="#i-target"/></svg></span>
+          <span class="lbl">New Goal</span>
+        </button>
+      </div>
+
+      <div class="section-title">
+        Your Goals
+        <span class="link" onclick="go('goals')">See all</span>
+      </div>
+      <div class="goal-scroll">
+        <div class="goal-preview" onclick="openGoal('laptop')">
+          <div class="emoji">💻</div>
+          <div class="name">New Laptop</div>
+          <div class="amt">$540 / $1,200</div>
+          <div class="progress-bar"><div class="fill" style="width:45%"></div></div>
+          <div class="progress-label"><span>45%</span><span class="pct">Aug 10</span></div>
+        </div>
+        <div class="goal-preview" onclick="openGoal('emergency')">
+          <div class="emoji">🛟</div>
+          <div class="name">Emergency Fund</div>
+          <div class="amt">$400 / $500</div>
+          <div class="progress-bar"><div class="fill" style="width:80%"></div></div>
+          <div class="progress-label"><span>80%</span><span class="pct">May 30</span></div>
+        </div>
+        <div class="goal-preview" onclick="openGoal('japan')">
+          <div class="emoji">🗼</div>
+          <div class="name">Japan Trip</div>
+          <div class="amt">$200 / $2,500</div>
+          <div class="progress-bar"><div class="fill" style="width:8%"></div></div>
+          <div class="progress-label"><span>8%</span><span class="pct">Dec 20</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===================================================================
+         6. QUICK ADD EXPENSE
+         =================================================================== -->
+    <div class="screen" id="screen-add-expense">
+      <div class="status-bar"><span>9:41</span><span class="icons">●●● 100%</span></div>
+      <div class="header">
+        <div class="header-left">
+          <button class="icon-btn" onclick="go('dashboard')"><svg><use href="#i-back"/></svg></button>
+          <h2>Add Expense</h2>
+        </div>
+      </div>
+
+      <div class="amount-display">
+        <span class="currency">$</span>
+        <span class="num" id="expense-amount">0.00</span>
+      </div>
+
+      <div class="category-chips" id="expense-chips">
+        <button class="chip active" data-cat="Food"><span class="emoji">🍔</span>Food</button>
+        <button class="chip" data-cat="Transport"><span class="emoji">🚌</span>Transport</button>
+        <button class="chip" data-cat="Bills"><span class="emoji">🧾</span>Bills</button>
+        <button class="chip" data-cat="Shopping"><span class="emoji">🛍️</span>Shopping</button>
+        <button class="chip" data-cat="Entertainment"><span class="emoji">🎬</span>Entertainment</button>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">Note</label>
+        <input class="input" type="text" placeholder="e.g. Chipotle with friends" />
+      </div>
+      <div class="input-group">
+        <label class="input-label">Date</label>
+        <input class="input" type="text" value="Today, Apr 17 2026" readonly />
+      </div>
+
+      <div class="keypad" id="expense-keypad">
+        <button class="key" data-k="1">1</button>
+        <button class="key" data-k="2">2</button>
+        <button class="key" data-k="3">3</button>
+        <button class="key" data-k="4">4</button>
+        <button class="key" data-k="5">5</button>
+        <button class="key" data-k="6">6</button>
+        <button class="key" data-k="7">7</button>
+        <button class="key" data-k="8">8</button>
+        <button class="key" data-k="9">9</button>
+        <button class="key" data-k=".">.</button>
+        <button class="key" data-k="0">0</button>
+        <button class="key" data-k="back"><svg style="width:20px;height:20px;vertical-align:middle"><use href="#i-delete"/></svg></button>
+      </div>
+
+      <button class="btn btn-primary btn-block" onclick="saveExpense()">Save Expense</button>
+    </div>
+
+    <!-- ===================================================================
+         7. ADD INCOME
+         =================================================================== -->
+    <div class="screen" id="screen-add-income">
+      <div class="status-bar"><span>9:41</span><span class="icons">●●● 100%</span></div>
+      <div class="header">
+        <div class="header-left">
+          <button class="icon-btn" onclick="go('dashboard')"><svg><use href="#i-back"/></svg></button>
+          <h2>Add Income</h2>
+        </div>
+      </div>
+
+      <div class="amount-display">
+        <span class="currency">$</span>
+        <span class="num" id="income-amount">0.00</span>
+      </div>
+
+      <div class="category-chips" id="income-chips">
+        <button class="chip active" data-cat="Salary"><span class="emoji">💼</span>Salary</button>
+        <button class="chip" data-cat="Allowance"><span class="emoji">🏠</span>Allowance</button>
+        <button class="chip" data-cat="Freelance"><span class="emoji">💻</span>Freelance</button>
+        <button class="chip" data-cat="Gift"><span class="emoji">🎁</span>Gift</button>
+        <button class="chip" data-cat="Other"><span class="emoji">✨</span>Other</button>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">Note</label>
+        <input class="input" type="text" placeholder="e.g. TA paycheck" />
+      </div>
+      <div class="input-group">
+        <label class="input-label">Date</label>
+        <input class="input" type="text" value="Today, Apr 17 2026" readonly />
+      </div>
+
+      <div class="keypad" id="income-keypad">
+        <button class="key" data-k="1">1</button>
+        <button class="key" data-k="2">2</button>
+        <button class="key" data-k="3">3</button>
+        <button class="key" data-k="4">4</button>
+        <button class="key" data-k="5">5</button>
+        <button class="key" data-k="6">6</button>
+        <button class="key" data-k="7">7</button>
+        <button class="key" data-k="8">8</button>
+        <button class="key" data-k="9">9</button>
+        <button class="key" data-k=".">.</button>
+        <button class="key" data-k="0">0</button>
+        <button class="key" data-k="back"><svg style="width:20px;height:20px;vertical-align:middle"><use href="#i-delete"/></svg></button>
+      </div>
+
+      <button class="btn btn-primary btn-block" onclick="saveIncome()">Save Income</button>
+    </div>
+
+    <!-- ===================================================================
+         8. GOALS LIST
+         =================================================================== -->
+    <div class="screen has-tabbar" id="screen-goals">
+      <div class="status-bar"><span>9:41</span><span class="icons">●●● 100%</span></div>
+      <h1 class="page-title" style="padding-top:12px;">Goals</h1>
+      <p class="page-subtitle">3 active · $1,140 saved toward $4,200</p>
+
+      <div class="goal-card" onclick="openGoal('laptop')">
+        <div class="top">
+          <div class="left">
+            <div class="emoji-badge">💻</div>
+            <div>
+              <div class="goal-name">New Laptop</div>
+              <div class="goal-deadline">Target: Aug 10, 2026</div>
+            </div>
+          </div>
+          <div class="amounts">
+            <div class="a1">$540</div>
+            <div class="a2">of $1,200</div>
+          </div>
+        </div>
+        <div class="progress-bar"><div class="fill" style="width:45%"></div></div>
+        <div class="progress-label"><span>45% complete</span><span class="pct">$660 to go</span></div>
+      </div>
+
+      <div class="goal-card" onclick="openGoal('emergency')">
+        <div class="top">
+          <div class="left">
+            <div class="emoji-badge">🛟</div>
+            <div>
+              <div class="goal-name">Emergency Fund</div>
+              <div class="goal-deadline">Target: May 30, 2026</div>
+            </div>
+          </div>
+          <div class="amounts">
+            <div class="a1">$400</div>
+            <div class="a2">of $500</div>
+          </div>
+        </div>
+        <div class="progress-bar"><div class="fill" style="width:80%"></div></div>
+        <div class="progress-label"><span>80% complete</span><span class="pct">$100 to go</span></div>
+      </div>
+
+      <div class="goal-card" onclick="openGoal('japan')">
+        <div class="top">
+          <div class="left">
+            <div class="emoji-badge">🗼</div>
+            <div>
+              <div class="goal-name">Japan Trip</div>
+              <div class="goal-deadline">Target: Dec 20, 2026</div>
+            </div>
+          </div>
+          <div class="amounts">
+            <div class="a1">$200</div>
+            <div class="a2">of $2,500</div>
+          </div>
+        </div>
+        <div class="progress-bar"><div class="fill" style="width:8%"></div></div>
+        <div class="progress-label"><span>8% complete</span><span class="pct">$2,300 to go</span></div>
+      </div>
+
+      <button class="fab" onclick="go('create-goal')" aria-label="Create new goal">
+        <svg><use href="#i-plus"/></svg>
+      </button>
+    </div>
+
+    <!-- ===================================================================
+         9. CREATE GOAL
+         =================================================================== -->
+    <div class="screen" id="screen-create-goal">
+      <div class="status-bar"><span>9:41</span><span class="icons">●●● 100%</span></div>
+      <div class="header">
+        <div class="header-left">
+          <button class="icon-btn" onclick="go('goals')"><svg><use href="#i-back"/></svg></button>
+          <h2>Create Goal</h2>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">Goal name</label>
+        <input class="input" type="text" placeholder="e.g. Summer road trip" value="Summer road trip" />
+      </div>
+      <div class="input-group">
+        <label class="input-label">Target amount</label>
+        <input class="input" type="text" placeholder="$0.00" value="$800.00" />
+      </div>
+      <div class="input-group">
+        <label class="input-label">Deadline</label>
+        <input class="input" type="text" value="Jul 15, 2026" readonly />
+      </div>
+      <div class="input-group">
+        <label class="input-label">Category</label>
+        <select class="select">
+          <option>Travel</option>
+          <option>Tech</option>
+          <option>Safety net</option>
+          <option>Education</option>
+          <option>Gift</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <button class="btn btn-primary btn-block" onclick="saveGoal()">Create Goal</button>
+    </div>
+
+    <!-- ===================================================================
+         10. GOAL PROGRESS DETAIL
+         =================================================================== -->
+    <div class="screen" id="screen-goal-detail">
+      <div class="status-bar"><span>9:41</span><span class="icons">●●● 100%</span></div>
+      <div class="header">
+        <div class="header-left">
+          <button class="icon-btn" onclick="go('goals')"><svg><use href="#i-back"/></svg></button>
+          <h2 id="gd-name">New Laptop</h2>
+        </div>
+      </div>
+
+      <div class="big-progress">
+        <svg viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="82" fill="none" stroke="#F1F3F5" stroke-width="16"/>
+          <circle id="gd-ring" cx="100" cy="100" r="82" fill="none" stroke="#2ECC71" stroke-width="16"
+            stroke-dasharray="231.8 515.2" stroke-dashoffset="0" stroke-linecap="round"
+            transform="rotate(-90 100 100)"/>
+        </svg>
+        <div class="pct-label">
+          <div class="val" id="gd-pct">45%</div>
+          <div class="sub" id="gd-saved">$540 of $1,200</div>
+        </div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="val" id="gd-remaining">$660</div>
+          <div class="lbl">REMAINING</div>
+        </div>
+        <div class="stat-card">
+          <div class="val" id="gd-days">115</div>
+          <div class="lbl">DAYS LEFT</div>
+        </div>
+        <div class="stat-card">
+          <div class="val text-accent" id="gd-behind">14 days</div>
+          <div class="lbl">BEHIND</div>
+        </div>
+      </div>
+
+      <div class="pace-card">
+        <div class="title">⚡ Weekly Pace</div>
+        <div class="msg" id="gd-pace-msg">Save <strong>$45/week</strong> to stay on track and hit your goal by Aug 10.</div>
+      </div>
+
+      <div class="card chart-card">
+        <h3>Savings over time</h3>
+        <svg class="chart-svg" viewBox="0 0 320 120" preserveAspectRatio="none">
+          <!-- grid -->
+          <line x1="0" y1="30" x2="320" y2="30" stroke="#F1F3F5" stroke-width="1"/>
+          <line x1="0" y1="60" x2="320" y2="60" stroke="#F1F3F5" stroke-width="1"/>
+          <line x1="0" y1="90" x2="320" y2="90" stroke="#F1F3F5" stroke-width="1"/>
+          <!-- target line (dashed) -->
+          <polyline points="0,100 320,10" fill="none" stroke="#BDC3C7" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <!-- actual savings -->
+          <polyline points="0,110 45,95 90,78 135,70 180,58 225,48 270,42 320,35"
+            fill="none" stroke="#2ECC71" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- filled area -->
+          <polyline points="0,110 45,95 90,78 135,70 180,58 225,48 270,42 320,35 320,120 0,120"
+            fill="rgba(46, 204, 113, 0.12)" stroke="none"/>
+          <!-- dots -->
+          <circle cx="320" cy="35" r="4" fill="#2ECC71" stroke="white" stroke-width="2"/>
+        </svg>
+        <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--text-secondary); margin-top:4px;">
+          <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-block" onclick="go('goal-impact')">View Goal Impact →</button>
+    </div>
+
+    <!-- ===================================================================
+         11. GOAL IMPACT
+         =================================================================== -->
+    <div class="screen" id="screen-goal-impact">
+      <div class="status-bar"><span>9:41</span><span class="icons">●●● 100%</span></div>
+      <div class="header">
+        <div class="header-left">
+          <button class="icon-btn" onclick="go('goal-detail')"><svg><use href="#i-back"/></svg></button>
+          <h2>Goal Impact</h2>
+        </div>
+      </div>
+
+      <div class="impact-header">
+        <div class="name">💻 New Laptop — $540 / $1,200</div>
+        <div class="sub">See how small cuts move your finish line.</div>
+      </div>
+
+      <div class="card timeline-card">
+        <h3>Projected finish line</h3>
+        <div class="timeline">
+          <div class="track"></div>
+          <div class="gap-fill" id="gap-fill" style="left:25%; right:20%;"></div>
+          <div class="label-t target">Target</div>
+          <div class="marker target"></div>
+          <div class="label-b target">Jun 1</div>
+          <div class="label-t current" id="label-current-top">Current</div>
+          <div class="marker current" id="marker-current"></div>
+          <div class="label-b current" id="label-current-date">Jun 15</div>
+        </div>
+        <div style="display:flex; justify-content:space-between; font-size:12px; color:var(--text-secondary); margin-top:6px;">
+          <span>Goal month</span>
+          <span id="gap-days-label" class="text-accent" style="font-weight:600;">14 days behind</span>
+        </div>
+      </div>
+
+      <div class="card slider-card">
+        <div class="slider-row">
+          <span class="slabel">🍔 Cut Food / Dining</span>
+          <span class="sval" id="s-food-val">$0/week</span>
+        </div>
+        <input type="range" min="0" max="50" value="0" step="5" class="slider" id="slider-food" />
+      </div>
+      <div class="card slider-card">
+        <div class="slider-row">
+          <span class="slabel">📺 Cut Subscriptions</span>
+          <span class="sval" id="s-sub-val">$0/week</span>
+        </div>
+        <input type="range" min="0" max="30" value="0" step="5" class="slider" id="slider-sub" />
+      </div>
+      <div class="card slider-card">
+        <div class="slider-row">
+          <span class="slabel">🎬 Cut Entertainment</span>
+          <span class="sval" id="s-ent-val">$0/week</span>
+        </div>
+        <input type="range" min="0" max="30" value="0" step="5" class="slider" id="slider-ent" />
+      </div>
+
+      <div class="impact-message" id="impact-msg">
+        Drag any slider to see the impact on your goal.
+      </div>
+    </div>
+
+    <!-- ===================================================================
+         12. ALERTS
+         =================================================================== -->
+    <div class="screen" id="screen-alerts">
+      <div class="status-bar"><span>9:41</span><span class="icons">●●● 100%</span></div>
+      <div class="header">
+        <div class="header-left">
+          <button class="icon-btn" onclick="go('dashboard')"><svg><use href="#i-back"/></svg></button>
+          <h2>Alerts</h2>
+        </div>
+      </div>
+      <p class="page-subtitle" style="padding-top:4px;">4 new · tap any alert for details.</p>
+
+      <div class="alert warn" onclick="go('monthly')">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-body">
+          <div class="alert-text">Dining is <strong>+18%</strong> vs last week</div>
+          <div class="alert-time">2 hours ago</div>
+        </div>
+      </div>
+
+      <div class="alert behind" onclick="openGoal('laptop')">
+        <div class="alert-icon">🎯</div>
+        <div class="alert-body">
+          <div class="alert-text">You're 3 days behind on <strong>New Laptop</strong> goal</div>
+          <div class="alert-time">Yesterday</div>
+        </div>
+      </div>
+
+      <div class="alert win" onclick="openGoal('emergency')">
+        <div class="alert-icon">✅</div>
+        <div class="alert-body">
+          <div class="alert-text">You hit <strong>80%</strong> of Emergency Fund!</div>
+          <div class="alert-time">2 days ago</div>
+        </div>
+      </div>
+
+      <div class="alert info" onclick="go('recurring')">
+        <div class="alert-icon">💳</div>
+        <div class="alert-body">
+          <div class="alert-text">Netflix renewed <strong>$15.99</strong></div>
+          <div class="alert-time">3 days ago</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================
+         13. MONTHLY SUMMARY (Insights tab)
+         =================================================================== -->
+    <div class="screen has-tabbar" id="screen-monthly">
+      <div class="status-bar"><span>9:41</span><span class="icons">●●● 100%</span></div>
+      <h1 class="page-title" style="padding-top:12px;">Insights</h1>
+      <p class="page-subtitle">April 2026</p>
+
+      <div class="month-kpis">
+        <div class="kpi">
+          <div class="k-label">Spent</div>
+          <div class="k-val">$1,847</div>
+        </div>
+        <div class="kpi">
+          <div class="k-label">Income</div>
+          <div class="k-val">$2,200</div>
+        </div>
+        <div class="kpi highlight">
+          <div class="k-label">Net Savings</div>
+          <div class="k-val">+$353</div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="ico">📈</div>
+        <div class="text">Biggest change: <strong>Dining +$82</strong> vs last month.</div>
+      </div>
+
+      <div class="section-title">
+        Top categories
+        <span class="link" onclick="go('recurring')">Recurring →</span>
+      </div>
+      <div class="card">
+        <div class="top-cat">
+          <div class="c-icon" style="background:#E8F8EF">🍔</div>
+          <div class="c-body">
+            <div class="row-between">
+              <div class="c-name">Food</div>
+              <div class="c-amt">$646</div>
+            </div>
+            <div class="c-bar"><div class="f" style="width:100%; background:#2ECC71"></div></div>
+          </div>
+        </div>
+        <div class="top-cat">
+          <div class="c-icon" style="background:#E8F1FF">🧾</div>
+          <div class="c-body">
+            <div class="row-between">
+              <div class="c-name">Bills</div>
+              <div class="c-amt">$462</div>
+            </div>
+            <div class="c-bar"><div class="f" style="width:72%; background:#3498DB"></div></div>
+          </div>
+        </div>
+        <div class="top-cat">
+          <div class="c-icon" style="background:#FFE8E8">🚌</div>
+          <div class="c-body">
+            <div class="row-between">
+              <div class="c-name">Transport</div>
+              <div class="c-amt">$370</div>
+            </div>
+            <div class="c-bar"><div class="f" style="width:58%; background:#FF6B6B"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-ghost btn-block" onclick="go('recurring')" style="margin-top:8px;">
+        View Recurring Expenses
+      </button>
+    </div>
+
+    <!-- ===================================================================
+         14. RECURRING EXPENSES
+         =================================================================== -->
+    <div class="screen" id="screen-recurring">
+      <div class="status-bar"><span>9:41</span><span class="icons">●●● 100%</span></div>
+      <div class="header">
+        <div class="header-left">
+          <button class="icon-btn" onclick="go('monthly')"><svg><use href="#i-back"/></svg></button>
+          <h2>Recurring</h2>
+        </div>
+      </div>
+
+      <div class="recurring-hero">
+        <div class="lbl">Monthly recurring total</div>
+        <div class="val">$977.98</div>
+        <div class="sub">Across 5 active subscriptions & bills</div>
+      </div>
+
+      <div class="section-title">Scheduled charges</div>
+      <div class="recurring-list">
+        <div class="recurring-row">
+          <div class="rec-icon" style="background:#E8F8EF">🎵</div>
+          <div class="rec-body">
+            <div class="rec-name">Spotify</div>
+            <div class="rec-date">Next charge: Apr 22</div>
+          </div>
+          <div class="rec-amt">$11.99</div>
+        </div>
+        <div class="recurring-row">
+          <div class="rec-icon" style="background:#FFE8E8">🎬</div>
+          <div class="rec-body">
+            <div class="rec-name">Netflix</div>
+            <div class="rec-date">Next charge: Apr 25</div>
+          </div>
+          <div class="rec-amt">$15.99</div>
+        </div>
+        <div class="recurring-row">
+          <div class="rec-icon" style="background:#FFF4E5">🏋️</div>
+          <div class="rec-body">
+            <div class="rec-name">Campus Gym</div>
+            <div class="rec-date">Next charge: May 1</div>
+          </div>
+          <div class="rec-amt">$35.00</div>
+        </div>
+        <div class="recurring-row">
+          <div class="rec-icon" style="background:#E8F1FF">📱</div>
+          <div class="rec-body">
+            <div class="rec-name">Phone Plan</div>
+            <div class="rec-date">Next charge: May 5</div>
+          </div>
+          <div class="rec-amt">$65.00</div>
+        </div>
+        <div class="recurring-row">
+          <div class="rec-icon" style="background:#F3E8FF">🏠</div>
+          <div class="rec-body">
+            <div class="rec-name">Rent</div>
+            <div class="rec-date">Next charge: May 1</div>
+          </div>
+          <div class="rec-amt">$850.00</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================
+         15. PROFILE / SETTINGS
+         =================================================================== -->
+    <div class="screen has-tabbar" id="screen-profile">
+      <div class="status-bar"><span>9:41</span><span class="icons">●●● 100%</span></div>
+
+      <div class="profile-hero">
+        <div class="avatar">AC</div>
+        <div class="pname">Alex Chen</div>
+        <div class="pemail">alex.chen@college.edu</div>
+      </div>
+
+      <div class="setting-group-label">Account</div>
+      <div class="setting-group">
+        <button class="setting-row" onclick="alert('Edit profile coming soon.')">
+          <span class="left"><span class="ico">👤</span>Edit profile</span>
+          <span class="right"><svg style="width:16px;height:16px"><use href="#i-chev"/></svg></span>
+        </button>
+        <button class="setting-row" onclick="alert('Notification preferences.')">
+          <span class="left"><span class="ico">🔔</span>Notifications</span>
+          <span class="right"><svg style="width:16px;height:16px"><use href="#i-chev"/></svg></span>
+        </button>
+        <button class="setting-row" onclick="alert('Currency settings.')">
+          <span class="left"><span class="ico">💵</span>Currency</span>
+          <span class="right">USD <svg style="width:16px;height:16px"><use href="#i-chev"/></svg></span>
+        </button>
+        <button class="setting-row" onclick="alert('Manage categories.')">
+          <span class="left"><span class="ico">🏷️</span>Categories</span>
+          <span class="right"><svg style="width:16px;height:16px"><use href="#i-chev"/></svg></span>
+        </button>
+      </div>
+
+      <div class="setting-group-label">Preferences</div>
+      <div class="setting-group">
+        <div class="setting-row" style="cursor:default;">
+          <span class="left"><span class="ico">🌙</span>Dark mode</span>
+          <span class="right"><div class="toggle" onclick="event.stopPropagation(); this.classList.toggle('on')"></div></span>
+        </div>
+        <button class="setting-row" onclick="alert('Data export queued — you\'ll get an email.')">
+          <span class="left"><span class="ico">📁</span>Export data</span>
+          <span class="right"><svg style="width:16px;height:16px"><use href="#i-chev"/></svg></span>
+        </button>
+      </div>
+
+      <div class="setting-group-label">Session</div>
+      <div class="setting-group">
+        <button class="setting-row danger" onclick="go('splash')">
+          <span class="left"><span class="ico">🚪</span>Log out</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Shared bottom tab bar — visible only on main screens, managed by app.js -->
+    <nav class="tab-bar" id="tab-bar">
+      <button class="tab" data-target="dashboard" onclick="go('dashboard')"><svg><use href="#i-home"/></svg>Home</button>
+      <button class="tab" data-target="goals" onclick="go('goals')"><svg><use href="#i-target"/></svg>Goals</button>
+      <button class="tab" data-target="monthly" onclick="go('monthly')"><svg><use href="#i-insights"/></svg>Insights</button>
+      <button class="tab" data-target="profile" onclick="go('profile')"><svg><use href="#i-user"/></svg>Profile</button>
+    </nav>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
