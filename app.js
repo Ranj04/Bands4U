@@ -1,6 +1,5 @@
 /* ==========================================================================
    Bands4U — navigation + interactive bits
-   Everything is vanilla JS. No dependencies.
    ========================================================================== */
 
 /* ----- Goal data (used by goal detail + previews) ----- */
