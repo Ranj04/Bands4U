@@ -308,12 +308,23 @@ body {
 .splash-logo-wrap {
   width: 120px; height: 120px;
   border-radius: 32px;
-  background: linear-gradient(135deg, #2ECC71 0%, #27AE60 100%);
+  background: #FFFFFF;
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 28px;
-  box-shadow: 0 20px 40px rgba(46, 204, 113, 0.35);
+  box-shadow:
+    0 20px 40px rgba(46, 204, 113, 0.35),
+    0 0 0 2px rgba(46, 204, 113, 0.15) inset;
 }
-.splash-logo-wrap svg { width: 64px; height: 64px; color: white; }
+.splash-dollar {
+  font-size: 84px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--primary);
+  letter-spacing: -2px;
+  text-shadow: 0 4px 12px rgba(46, 204, 113, 0.25);
+  /* nudge optical center — the $ reads a touch high with its serifs */
+  transform: translateY(2px);
+}
 .splash-brand {
   font-size: 38px;
   font-weight: 800;
